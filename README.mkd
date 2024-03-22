@@ -1,0 +1,3 @@
+Just a little thing to practice my object oriented programming.
+
+Hopefully will add character creation and combat flow so that it actually functions like a real game in the future.
