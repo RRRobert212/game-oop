@@ -9,6 +9,8 @@
 import util as u
 from entity import *
 from actions import Actions as a
+from combat import *
+
 
 def main():
 
@@ -36,10 +38,7 @@ def main():
     print("Enemy race: " + str(e.get_race()))
     print("\n")
 
-    a.punch(c, e)
-
-    a.heal_damage(e, 10)
-
+    combat_flow(c, e)
 
 
 

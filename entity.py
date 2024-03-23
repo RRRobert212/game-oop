@@ -28,6 +28,12 @@ class Entity: #a class for creatures with health and attack
         return self.race
     def get_name(self):
         return self.name
+    
+    
+    def is_alive(self):
+        if self.health > 0:
+            return True
+        else: return False
 
 #a class for player characters, a race must be selected from the race list. characters have names and ages
 class Character(Entity):
@@ -39,7 +45,6 @@ class Character(Entity):
 
     def get_age(self):
         return self.age
-
 
 #a class for enemies, they don't have ages, their names are just their race. a race must be selected from enemy list
 class Enemy(Entity):
