@@ -8,7 +8,7 @@
 
 import util as u
 from entity import *
-
+from actions import Actions as a
 
 def main():
 
@@ -35,6 +35,13 @@ def main():
     print("Enemy health: " + str(e.get_health()))
     print("Enemy race: " + str(e.get_race()))
     print("\n")
+
+    a.punch(c, e)
+
+    a.heal_damage(e, 10)
+
+
+
 
 
 

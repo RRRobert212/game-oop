@@ -17,12 +17,17 @@ class Entity: #a class for creatures with health and attack
     def attack_roll(self):
         self.attack = stat_roll(self.attack_range)
 
+    def set_health(self, new_health):
+        self.health = new_health
+
     def get_health(self):
         return self.health
     def get_attack(self):
         return self.attack
     def get_race(self):
         return self.race
+    def get_name(self):
+        return self.name
 
 #a class for player characters, a race must be selected from the race list. characters have names and ages
 class Character(Entity):
@@ -32,13 +37,11 @@ class Character(Entity):
         self.age = age
         self.race = race_list[race_num]
 
-    def get_name(self):
-        return self.name
     def get_age(self):
         return self.age
 
 
-#a class for enemies, they don't have names or ages, a race must be selected from enemy list
+#a class for enemies, they don't have ages, their names are just their race. a race must be selected from enemy list
 class Enemy(Entity):
     def __init__(self, enemy_num):
         super().__init__(enemy_health[enemy_num], enemy_attack[enemy_num])
