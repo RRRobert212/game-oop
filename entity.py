@@ -20,6 +20,7 @@ class Entity: #a class for creatures with health and attack
     def set_health(self, new_health):
         self.health = new_health
 
+    #getter functions
     def get_health(self):
         return self.health
     def get_attack(self):
@@ -28,6 +29,14 @@ class Entity: #a class for creatures with health and attack
         return self.race
     def get_name(self):
         return self.name
+    
+    #update functions
+    def update_name(self, new_name):
+        self.name = new_name
+    def update_race(self, new_race_num):
+
+        self.race_num = new_race_num
+        self.race = race_list[new_race_num]
     
     
     def is_alive(self):
@@ -42,9 +51,12 @@ class Character(Entity):
         self.name = name
         self.age = age
         self.race = race_list[race_num]
+        self.race_num = race_num
 
     def get_age(self):
         return self.age
+    def update_age(self, new_age):
+        self.age = new_age
 
 #a class for enemies, they don't have ages, their names are just their race. a race must be selected from enemy list
 class Enemy(Entity):

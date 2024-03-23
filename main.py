@@ -10,35 +10,36 @@ import util as u
 from entity import *
 from actions import Actions as a
 from combat import *
+import create_character
 
 
 def main():
 
-    e = Enemy(0)
-    e.attack_roll()
-    e.health_roll()
+    create_character.create_character()
+    
+    # e = Enemy(0)
+    # e.attack_roll()
+    # e.health_roll()
 
+    # c = Character("Robert", 25, 2)
+    # c.attack_roll()
+    # c.health_roll()
 
+    # print("\n")
+    # print("Character name: " + str(c.get_name()))
+    # print("Age: " + str(c.get_age()))
+    # print("Race: " + str(c.get_race()))
+    # print("Attack: " + str(c.get_attack()))
+    # print("Health: " + str(c.get_health()))
 
-    c = Character("Robert", 25, 2)
-    c.attack_roll()
-    c.health_roll()
+    # print("\n")
 
-    print("\n")
-    print("Character name: " + str(c.get_name()))
-    print("Age: " + str(c.get_age()))
-    print("Race: " + str(c.get_race()))
-    print("Attack: " + str(c.get_attack()))
-    print("Health: " + str(c.get_health()))
+    # print("Enemy attack: " + str(e.get_attack()))
+    # print("Enemy health: " + str(e.get_health()))
+    # print("Enemy race: " + str(e.get_race()))
+    # print("\n")
 
-    print("\n")
-
-    print("Enemy attack: " + str(e.get_attack()))
-    print("Enemy health: " + str(e.get_health()))
-    print("Enemy race: " + str(e.get_race()))
-    print("\n")
-
-    combat_flow(c, e)
+    # combat_flow(c, e)
 
 
 
