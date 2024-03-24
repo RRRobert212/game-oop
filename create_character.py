@@ -39,7 +39,7 @@ def create_character():
     except ValueError: pass
     except IndexError: pass
 
-    while c.race_num <= 0 or c.race_num > len(race_list):
+    while c.race_num < 0 or c.race_num > len(race_list):
          try: c.update_race(int(input("Please enter a valid integer choice from the list: ")) -1 )
 
          except ValueError: pass
@@ -56,6 +56,8 @@ def create_character():
     load_short()
     c.attack_roll()
     print(f"\nAttack: {c.get_attack()}")
+
+    return c
 
 
 

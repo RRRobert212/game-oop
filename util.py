@@ -8,6 +8,7 @@ def dice_6():
     return r
 
 def load_short():
+    """prints 3 dots with pauses, a sort of loading screen"""
     for i in range(3):
         time.sleep(0.25)
         print(".", end = '', flush= True)

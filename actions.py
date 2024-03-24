@@ -19,6 +19,7 @@ class Actions:
 
     @staticmethod
     def punch(user, target): 
+        """generic attack function, user argument punches target argument"""
         print(str(user.get_name()) + " used punch! ")
         Actions.receive_damage(target, user.get_attack())
         if user.get_attack() > 40:

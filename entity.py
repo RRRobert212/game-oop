@@ -67,3 +67,22 @@ class Enemy(Entity):
         self.race = enemy_list[enemy_num]
 
     
+    #so these are obviously repetitive, I could just make a spawn function, but I like that they get different names, it makes calling them more intuitive
+    #and I don't have to remember which enemy has which enemy number
+    @staticmethod
+    def spawn_goblin():
+        e = Enemy(0)
+        e.health_roll()
+        e.attack_roll()
+        return e
+    
+    @staticmethod
+    def spawn_ghoul():
+        e = Enemy(1)
+        e.health_roll()
+        e.attack_roll()
+        return e
+    
+
+
+    

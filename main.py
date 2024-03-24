@@ -11,39 +11,17 @@ from entity import *
 from actions import Actions as a
 from combat import *
 import create_character
+import map as map
 
 
 def main():
 
-    create_character.create_character()
-    
-    # e = Enemy(0)
-    # e.attack_roll()
-    # e.health_roll()
 
-    # c = Character("Robert", 25, 2)
-    # c.attack_roll()
-    # c.health_roll()
+    m = map.Map(10,10)
+   # m.display()
 
-    # print("\n")
-    # print("Character name: " + str(c.get_name()))
-    # print("Age: " + str(c.get_age()))
-    # print("Race: " + str(c.get_race()))
-    # print("Attack: " + str(c.get_attack()))
-    # print("Health: " + str(c.get_health()))
-
-    # print("\n")
-
-    # print("Enemy attack: " + str(e.get_attack()))
-    # print("Enemy health: " + str(e.get_health()))
-    # print("Enemy race: " + str(e.get_race()))
-    # print("\n")
-
-    # combat_flow(c, e)
-
-
-
-
+    m.update(3,7)
+    m.display()
 
     return
 
