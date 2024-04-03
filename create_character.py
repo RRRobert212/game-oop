@@ -4,6 +4,7 @@ from entity import *
 from util import *
 
 def create_character():
+    """basic character creation, prompts user for name, age, and race selection. automatically roles for stats with fake loading icons"""
     print("Welcome to the character creation!")
     c = Character("NULL", -1, -1)
     

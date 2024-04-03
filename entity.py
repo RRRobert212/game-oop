@@ -2,6 +2,7 @@
 
 from util import *
 from constants import *
+import map
 
 class Entity: #a class for creatures with health and attack
     def __init__(self, health_range, attack_range):
@@ -10,6 +11,8 @@ class Entity: #a class for creatures with health and attack
         self.health_range = health_range
         self.attack_range = attack_range
         self.race = None
+        self.pos_x = None
+        self.pos_y = None
 
     def health_roll(self):
         self.health = stat_roll(self.health_range)
@@ -29,6 +32,12 @@ class Entity: #a class for creatures with health and attack
         return self.race
     def get_name(self):
         return self.name
+    def get_pos_x(self):
+        return self.pos_x
+    def get_pos_y(self):
+        return self.pos_y
+    def get_first_letter(self):
+        return self.get_name()[0].upper() 
     
     #update functions
     def update_name(self, new_name):
@@ -43,6 +52,10 @@ class Entity: #a class for creatures with health and attack
         if self.health > 0:
             return True
         else: return False
+
+    def set_pos(self, x, y):
+        self.pos_x = x
+        self.pos_y = y
 
 #a class for player characters, a race must be selected from the race list. characters have names and ages
 class Character(Entity):

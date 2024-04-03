@@ -1,0 +1,17 @@
+1) fix override when character walks over other object on map.
+    it works for now because the character just encounters enemies so it makes sense that they go away
+    wait actually, maybe it always will work because anything you can step on you should either fight or pick up...
+
+2) create robust collision detection function using lists for positions
+
+3) create wall objects
+
+4) create collectibles, eg. weapons that you can pick up
+
+5) improve the input for movement, ideally you don't have to press enter every time.
+
+6) at some point the map/graphics needs to be changed to something slightly better than printing in the terminal
+
+7) change comabt flow so there's more to do beyond just press enter to punch. Although that is basically skyrim combat
+    should probably add some randomization in it too, so like you roll for your attack but then each attack you do does
+    anywhere from like 0.5 to 1.5 times your attack stat as damage. (these numbers can vary for diff weapons)

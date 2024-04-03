@@ -10,7 +10,7 @@ from entity import *
 class Actions:
 
     @staticmethod
-    def receive_damage(target, amount): #can modify this so it can heal also actually don't cause of the print statement
+    def receive_damage(target, amount):
         """generic function to deal damage to target. Takes target, and amount of damage. Outputs damage and remaining health"""
         target.set_health(target.get_health() - amount)
         if target.is_alive():
