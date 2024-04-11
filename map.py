@@ -1,12 +1,20 @@
 #map.py
 
 from entity import *
+
+
+class Wall:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
 class Map:
 
     def __init__(self, width, height):
         self.width = width
         self.height = height
         self.grid = [['.' for i in range(width)] for i in range(height)]
+        self.walls = []
 
     def display(self):
         """prints the map"""
@@ -39,7 +47,12 @@ class Map:
         """basically a utility function for directional movement functions"""
         #but I can also use it later if I want to make things move in different ways
         self.clear_entity(entity)
-        entity.set_pos(entity.get_pos_x()+ dx, entity.get_pos_y() + dy)
+
+        #this should prevent wall clipping
+        if not self.is_wall(entity.get_pos_x()+dx, entity.get_pos_y()+dy):
+            entity.set_pos(entity.get_pos_x()+ dx, entity.get_pos_y() + dy)
+        
+        #this should prevent leaving map boundaries
         if entity.get_pos_x() <= 0:
             entity.set_pos(0, entity.get_pos_y())
         if entity.get_pos_y() <= 0:
@@ -64,6 +77,31 @@ class Map:
 
     def move_down(self, entity):
         self.move(entity, 0, 1)
+
+
+    
+    def collision_detection(self, entity_1, entity_2):
+        """returns true if entity_1 and entity_2 are in the same position on the map"""
+        if (entity_1.get_pos_x() == entity_2.get_pos_x() ) and (entity_1.get_pos_y() == entity_2.get_pos_y()):
+            return True
+        else: return False
+
+
+
+    #walls
+    def spawn_wall(self, x, y):
+        """Place a wall at the given position"""
+        self.grid[y][x] = '#'
+        self.walls.append(Wall(x, y))
+
+    def is_wall(self, x, y):
+        """Check if a given position is a wall"""
+        for wall in self.walls:
+            if wall.x == x and wall.y == y:
+                return True
+        return False
+    
+
 
 
         
