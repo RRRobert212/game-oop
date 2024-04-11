@@ -8,8 +8,9 @@ enemy_list = ["Goblin", "Ghoul"]
 enemy_health = [[30,40], [20,30]]
 enemy_attack = [[10,20],[20,30]]
 
+#weapon ids are just their index in this list, same for other lists
 weapon_types = ["Punch", "old stick"]
-weapon_damage_factor = [[0.175,0.275]]
+weapon_damage_factor = [[0.175,0.275], [0.2, 0.4]]
 
 armor_types = []
 armor_block_factor = [[]]
