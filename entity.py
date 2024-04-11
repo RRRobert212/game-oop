@@ -3,6 +3,7 @@
 from util import *
 from constants import *
 import map
+from inventory import *
 
 class Entity: #a class for creatures with health and attack
     def __init__(self, health_range, attack_range):
@@ -13,6 +14,7 @@ class Entity: #a class for creatures with health and attack
         self.race = None
         self.pos_x = None
         self.pos_y = None
+        self.inventory = Inventory()
 
     def health_roll(self):
         self.health = stat_roll(self.health_range)
