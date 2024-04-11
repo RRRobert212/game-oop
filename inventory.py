@@ -19,27 +19,36 @@ class Inventory:
         print()
         print("INVENTORY:")
 
+        self.display_weapons()
+        self.display_armor()
+        self.display_consumables()
+
+
+    def display_weapons(self):
         print("Weapons: ", end = '')
         if len(self.weapons) == 0: print("None.")
         else:
-            for weapon in self.weapons:
-                print(weapon[1] +". ", end = '')
-            print()
+            for index, weapon in enumerate(self.weapons, start=1):
+                print(f"{index}. {weapon[1]}", end = '  ')  # Display the weapon with its corresponding number
 
+            print()
+    def display_armor(self):
         print("Armor: ", end ='')
         if len(self.armor) == 0: print("None")
         else:
-            for armor in self.armor:
-                print(armor[1] + ". ", end = '')
-                print()
-
+            for index, armor in enumerate(self.armor, start =1):
+                print(f"{index}. {armor[1]}", end = "   ")
+            print()
+    def display_consumables(self):
         print("Consumables: ", end = '')
         if len(self.consumables) == 0: print("None")
         else:
-            for consumable in self.consumables:
-                print(consumable[1]+ ". ", end = '')
-                print()
-        print()
+            for index, consumable in enumerate(self.consumables, start =1):
+                print(f"{index}. {consumable[1]}", end = "   ")
+                
+            print()
+
+
 
     def add_armor(self, armor_id):
         """takes armor_id as input, append [armor id, armor name] to armor inventory"""
