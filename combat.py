@@ -10,6 +10,7 @@ def combat_flow(character, opponent):
 
     while character.is_alive() and opponent.is_alive():
 
+        #this obviously needs to be changed. You should select from a list of options, not just always punch
         input("Press enter to punch!")
         a.punch(character, opponent)
 
