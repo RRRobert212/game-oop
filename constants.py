@@ -8,3 +8,9 @@ enemy_list = ["Goblin", "Ghoul"]
 enemy_health = [[30,40], [20,30]]
 enemy_attack = [[10,20],[20,30]]
 
+weapon_types = ["Punch"]
+weapon_damage_factor = [[0.175,0.275]]
+
+
+
+
