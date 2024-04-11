@@ -10,14 +10,23 @@ import map as map
 
 def main():
 
-    c = create_character.create_character()
+    c = Character("Robert", 23, 1)
+    c.health_roll()
+    c.attack_roll()
     e = Enemy.spawn_ghoul() #probably update the spawn function so it automatically puts them on the map with spawn_entity
     #but if I want to do that I prob have to add the map as a parameter to the spawn function
 
-    m = map.Map(30,30)
+    m = map.Map(10,10)
    # m.display()
     m.spawn_entity(c, 7,4)
     m.spawn_entity(e, 2,2)
+
+    m.spawn_wall(3,3)
+    m.spawn_wall(3,4)
+    m.spawn_wall(3,5)
+
+    m.spawn_wall(0,0)
+    m.spawn_wall(9,9)
 
     m.display()
 
@@ -42,14 +51,7 @@ def main():
 
 
         
-        #this is collision detection, it needs to be much better than this
-        #I think I have to append all enemy and character positions in a list when they spawn
-        #and then I constantly run collision detection between the character, and the positions in the list
-        #this will also work for collisions with objects like walls. I just need a slightly different function
-        #like the character to enemy collision detection initiates combat
-        #but character to wall blocks movement in one direction
-        #and character to collectible does something else
-        if (c.get_pos_x() == e.get_pos_x() ) and (c.get_pos_y() == e.get_pos_y()):
+        if m.collision_detection(c,e):
             combat_flow(c,e)
             m.display()
             
