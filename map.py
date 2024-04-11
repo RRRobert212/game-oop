@@ -1,6 +1,7 @@
 #map.py
 
 from entity import *
+import os
 
 
 class Wall:
@@ -16,7 +17,9 @@ class Map:
         self.grid = [['.' for i in range(width)] for i in range(height)]
         self.walls = []
 
+
     def display(self):
+        os.system('cls' if os.name == 'nt' else 'clear')
         """prints the map"""
         for row in self.grid:
             print(' '.join(row))
