@@ -14,6 +14,7 @@ def load_short():
         time.sleep(0.25)
         print(".", end = '', flush= True)
     time.sleep(0.25)
+    print()
 
 def stat_roll(stat_range):
     """Simplifies rolling for stats within classes"""
