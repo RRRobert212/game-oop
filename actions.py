@@ -39,4 +39,4 @@ class Actions:
 
 
 
-print(weapon_damage_roll(0))
+
