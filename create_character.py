@@ -35,16 +35,16 @@ def create_character():
         i += 1
         print(f"{i}: {race}")
 
-    try: c.update_race(int(input("Enter the integer for your chosen race: ")) - 1)
-
-    except ValueError: pass
-    except IndexError: pass
-
-    while c.race_num < 0 or c.race_num > len(race_list):
-         try: c.update_race(int(input("Please enter a valid integer choice from the list: ")) -1 )
-
-         except ValueError: pass
-         except IndexError: pass
+    while True:
+        try:
+            choice = int(input("Please enter the integer corresponding to your chosen race: ")) - 1
+            if choice < 0 or choice >= len(race_list):
+                print("Invalid choice. Please enter a valid integer within the range.")
+            else:
+                c.update_race(choice)
+                break
+        except ValueError:
+            print("Invalid input. Please enter a valid integer.")
 
 
     print(f"Name: {c.get_name()} \nAge: {c.get_age()} \nRace: {c.get_race()}")
