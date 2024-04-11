@@ -19,3 +19,7 @@
     PARTIALLY DONE, ADDED RANDOM WEAPON DAMAGE FACTOR
 
 8) add options for combat. Attack selection, run away, etc.
+
+9) The clearing thing doesn't work right now because I don't want it to clear the combat history. Like the map and the dialogue should be opened in seperate terminals
+
+10) need to deal with despawning enemies after they are defeated. For now, if you walk over the ghoul square again, you reenter combat, although the ghoul has no health so combat ends after you make any move. Unless you try to run away, then the ghoul can hit you.
