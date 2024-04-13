@@ -59,6 +59,22 @@ class Entity: #a class for creatures with health and attack
         self.pos_x = x
         self.pos_y = y
 
+
+    #inventory functions (these already exist in the inventory class but this lets you add them by just referencing the item object, not the item id)
+    def add_weapon_to_inventory(self, weapon):
+        """adds weapon object to entity inventory"""
+        self.inventory.add_weapon(weapon.get_id())
+
+    def add_armor_to_inventory(self, armor):
+        """adds armor object to entity inventory"""
+        self.inventory.add_armor(armor.get_id())
+
+    def add_consumable_to_inventory(self, consumable):
+        """adds consumable object to entity inventory"""
+        self.inventory.add_consumbale(consumable.get_id())
+
+    
+
 #a class for player characters, a race must be selected from the race list. characters have names and ages
 class Character(Entity):
     def __init__(self, name, age, race_num):
