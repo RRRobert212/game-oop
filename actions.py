@@ -24,7 +24,7 @@ class Actions:
     @staticmethod
     def attack(user, target, weapon_id): 
         """generic weak attack function, user argument punches target argument"""
-        print(str(user.get_name()) + " attacked " + str(target.get_name() +" with their " + str(weapon_types[weapon_id])))
+        print(str(user.get_name()) + " attacked " + str(target.get_name() +" with their " + str(weapon_names[weapon_id])))
 
         damage = round(weapon_damage_roll(weapon_id) * user.get_attack())
 
