@@ -9,13 +9,13 @@ enemy_health = [[30,40], [20,30]]
 enemy_attack = [[10,20],[20,30]]
 
 #weapon ids are just their index in this list, same for other lists
-weapon_types = ["Punch", "old stick"]
+weapon_names = ["Punch", "old stick"]
 weapon_damage_factor = [[0.175,0.275], [0.2, 0.4]]
 
-armor_types = []
-armor_block_factor = [[]]
+armor_names = ["leather shirt"]
+armor_block_factor = [[0.2,0.3]]
 
-consumable_types = []
+consumable_names = []
 consumbale_effect_factor = [[]]
 
 
