@@ -18,12 +18,8 @@ class Map:
         self.walls = []
 
 
-    def display(self):
-        os.system('cls' if os.name == 'nt' else 'clear')
-        """prints the map"""
-        for row in self.grid:
-            print(' '.join(row))
 
+    #functions for spawning entities
     def spawn_entity(self, entity, x, y):
         """place an entity at a position given by coordinates x,y"""
         # Update the map to reflect the character's position (assuming character_x and character_y are the coordinates of the character)
@@ -33,19 +29,41 @@ class Map:
     def respawn_entity(self, entity):
         """places the entity on the map at its position given by entity.get_pos_x/y"""
         self.grid[entity.get_pos_y()][entity.get_pos_x()] = entity.get_first_letter()
+
+    def clear_entity(self, entity):
+        """clears a specific entity from its position"""
+        self.clear_xy(entity.get_pos_x(), entity.get_pos_y())
+
+
+    #functions for spawning items
+    def spawn_item(self, item, x, y):
+        """place an item at a given position"""
+        a = item.get_item_type()
+        #prints the first letter of "weapon", "armor", etc on the map depending on item type.
+        self.grid[y][x] =a[0]
+
+
     
+    
+    #general display functions
+    def display(self):
+        os.system('cls' if os.name == 'nt' else 'clear')
+        """prints the map"""
+        for row in self.grid:
+            print(' '.join(row))
+
     def clear_xy(self, x, y):
         """clears a position given the coordinates"""
         self.grid[y][x] = '.'
-
-    def clear_entity(self, entity):
-        """clears an entity from a position"""
-        self.clear_xy(entity.get_pos_x(), entity.get_pos_y())
 
     def clear_all(self):
         """resets whole map to '.'s """
         self.grid = [['.' for i in range(self.width)] for i in range(self.height)]
 
+
+
+
+#functions for entity movement
     def move(self, entity, dx, dy):
         """basically a utility function for directional movement functions"""
         #but I can also use it later if I want to make things move in different ways
