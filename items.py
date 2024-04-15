@@ -7,6 +7,8 @@ class Items:
         self.name = self.get_name()
         self.item_id = item_id
         self.item_type = None
+        self.pos_x = None
+        self.pos_y = None
 
     def get_name(self):
         raise NotImplementedError("Subclasses must implement get_name method")
@@ -19,6 +21,35 @@ class Items:
 
     def get_item_type(self):
         return self.item_type
+    
+
+    def get_pos_x(self):
+        return self.pos_x
+    def get_pos_y(self):
+        return self.pos_y
+    
+    def set_pos(self, x, y):
+        self.pos_x = x
+        self.pos_y = y
+
+    
+    @staticmethod
+    def spawn_weapon(weapon_id):
+        weapon = Weapon(weapon_id)
+        spawned_items.append(weapon)
+        return weapon
+
+    @staticmethod
+    def spawn_armor(armor_id):
+        armor = Armor(armor_id)
+        spawned_items.append(armor)
+        return armor
+
+    @staticmethod
+    def spawn_consumable(consumable_id):
+        consumable = Consumable(consumable_id)
+        spawned_items.append(consumable)
+        return consumable
 
 
 #weapons
@@ -52,10 +83,21 @@ class Armor(Items):
     def get_block_stat(self):
         return armor_block_factor[self.armor_id]
     
+class Consumable(Items):
+    def __init__(self, consumable_id):
+        self.consumable_id = consumable_id
+        super().__init__(consumable_id)
+        self.item_type = "consumable"
+        self.effect_stat = self.get_effect_stat()
+
+    def get_name(self):
+        return consumable_names[self.consumable_id]
+    
+    def get_effect_stat(self):
+        return consumbale_effect_factor[self.consumable_id]
+    
 
 
 w = Weapon(1)
 a = Armor(0)
 
-print(w.get_item_type())
-print(a.get_item_type())
