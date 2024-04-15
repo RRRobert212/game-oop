@@ -1,27 +1,16 @@
-1) fix override when character walks over other object on map.
-    it works for now because the character just encounters enemies so it makes sense that they go away
-    wait actually, maybe it always will work because anything you can step on you should either fight or pick up...
 
-2) create robust collision detection function using lists for positions -UNNECESSARY?
+1) build logic for spawning and picking up collectables
 
-3) create wall objects - DONE
+2) improve movement input/controls
 
-4) create collectibles, eg. weapons that you can pick up
+3) rework map/graphics system
 
-5) improve the input for movement, ideally you don't have to press enter every time.
-    look into curses/keyboard for this.
+4) build enemy combat behavior
 
-6) at some point the map/graphics needs to be changed to something slightly better than printing in the terminal
+5) create special moves and logic for selecting them
 
-7) change comabt flow so there's more to do beyond just press enter to punch. Although that is basically skyrim combat
-    should probably add some randomization in it too, so like you roll for your attack but then each attack you do does
-    anywhere from like 0.5 to 1.5 times your attack stat as damage. (these numbers can vary for diff weapons)
-    PARTIALLY DONE, ADDED RANDOM WEAPON DAMAGE FACTOR
+6) The clearing thing doesn't work right now because I don't want it to clear the combat history. Like the map and the dialogue should be opened in seperate terminals
 
-8) add options for combat. Attack selection, run away, etc.
-
-9) The clearing thing doesn't work right now because I don't want it to clear the combat history. Like the map and the dialogue should be opened in seperate terminals
-
-10) need to deal with despawning enemies after they are defeated. For now, if you walk over the ghoul square again, you reenter combat, although the ghoul has no health so combat ends after you make any move. Unless you try to run away, then the ghoul can hit you.
+7) need to deal with despawning enemies after they are defeated. For now, if you walk over the ghoul square again, you reenter combat, although the ghoul has no health so combat ends after you make any move. Unless you try to run away, then the ghoul can hit you.
 
 There should come a point when I have fleshed out the logic of the game well enought that I can just like, design it. That will be easier.
