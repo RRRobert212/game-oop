@@ -94,7 +94,7 @@ def attack_flow(attacker, victim):
 
         try:
             if 0 < choice <= len(attacker.inventory.weapons):
-                chosen_weapon_id = attacker.inventory.weapons[choice-1][0]
+                chosen_weapon_id = attacker.inventory.weapons[choice-1]
                 print()
                 break    
                 

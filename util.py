@@ -25,5 +25,4 @@ def stat_roll(stat_range):
 def weapon_damage_roll(weapon_id_number):
     """utility function that returns random float in weapons damage factor range"""
     return random.uniform(weapon_damage_factor[weapon_id_number][0], weapon_damage_factor[weapon_id_number][1])
-        
-    
+

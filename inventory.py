@@ -58,6 +58,10 @@ class Inventory:
                 
             print()
 
+    def clear_inventory(self):
+        self.weapons.clear()
+        self.armor.clear()
+        self.consumables.clear()
 
 
 
