@@ -5,74 +5,73 @@ from entity import *
 from actions import Actions as a
 from combat import *
 import create_character
-import map as map
+from map import *
 from items import *
 
 
 def main():
 
-    c = Character("Robert", 12, 2)
-    e = Enemy.spawn_ghoul() #probably update the spawn function so it automatically puts them on the map with spawn_entity
-    #but if I want to do that I prob have to add the map as a parameter to the spawn function
-
-    w = Weapon(1)
-    w.display_name()
-
-    c.inventory.add_weapon(0)
-    c.inventory.display_inventory()
-    c.add_weapon_to_inventory(w)
-    c.inventory.display_inventory()
-
-
-
-
-
-
-#     m = map.Map(10,10)
-#    # m.display()
-#     m.spawn_entity(c, 7,4)
-#     m.spawn_entity(e, 2,2)
-
-#     m.spawn_wall(3,3)
-#     m.spawn_wall(3,4)
-#     m.spawn_wall(3,5)
-
-#     m.spawn_wall(0,0)
-#     m.spawn_wall(9,9)
-
-#     m.display()
-
-
-    
-#     #this eventually needs to get written as a function on its own, basically the whole gameplay
-#     while True:
-
-#         i = input("WASD: ")
-
-#         if i == "w":
-#             m.move_up(c)
-#         elif i == "a":
-#             m.move_left(c)
-#         elif i == "s":
-#             m.move_down(c)
-#         elif i == "d":
-#             m.move_right(c)
-#         elif i == "x": return #exit input, for testing
-#         else: print("Invalid input.")
-
-
-        
-#         if m.collision_detection(c,e):
-#             combat_flow(c,e)
-#             m.display()
-            
-        
-
-
+    play_test()
 
 
 
     return
+
+
+
+
+
+def play_test():
+    while True:
+        m = Map(10, 10)
+        spawned_enemies.clear()
+        spawned_items.clear()
+
+
+        c = create_character.create_character()
+
+
+        enemy_1 = Enemy.spawn_enemy(0)
+        enemy_2 = Enemy.spawn_enemy(1)
+
+        m.place_entity(enemy_1, 4, 5)
+        m.place_entity(enemy_2, 2, 3)
+        m.place_entity(c, 5, 5)
+
+        weapon_1 = Items.spawn_weapon(2)
+        weapon_2 = Items.spawn_weapon(1)
+
+        armor_1 = Items.spawn_armor(0)
+
+        m.place_item(weapon_1, 1, 7)
+        m.place_item(weapon_2, 3, 3)
+        m.place_item(armor_1, 9, 6)
+
+        m.spawn_wall(0, 0)
+        m.spawn_wall(0, 1)
+        m.spawn_wall(0, 2)
+        m.spawn_wall(6, 6)
+        m.spawn_wall(7, 6)
+        m.spawn_wall(8, 6)
+        m.spawn_wall(8, 7)
+        m.spawn_wall(8, 8)
+
+        m.display()
+        while True:
+            m.movement_loop(c)
+            m.combat_collision(c)
+            m.consumable_collision(c)
+
+            if not c.is_alive():
+                print("YOU LOSE!")
+                choice = input("Do you want to play again? (Y/N): ").lower()
+                if choice == "y":
+                    break  # Break out of the current game loop and start again
+                else:
+                    return  # Exit play_test function, effectively ending the game
+
+
+
 
 if __name__ == "__main__":
     main()
