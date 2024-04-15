@@ -58,6 +58,14 @@ def create_character():
     c.attack_roll()
     print(f"\nAttack: {c.get_attack()}")
 
+    
+    #adds fists as a default weapon
+    c.inventory.clear_inventory()
+    c.inventory.add_weapon(0)
+
+
+
+
     return c
 
 
