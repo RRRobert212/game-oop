@@ -13,4 +13,3 @@
 
 7) need to deal with despawning enemies after they are defeated. For now, if you walk over the ghoul square again, you reenter combat, although the ghoul has no health so combat ends after you make any move. Unless you try to run away, then the ghoul can hit you.
 
-There should come a point when I have fleshed out the logic of the game well enought that I can just like, design it. That will be easier.
