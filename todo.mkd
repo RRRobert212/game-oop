@@ -1,15 +1,12 @@
 
-1) build logic for spawning and picking up collectables
+1) improve movement input/controls
 
-2) improve movement input/controls
+2) rework map/graphics system
 
-3) rework map/graphics system
+3) build enemy combat behavior
 
-4) build enemy combat behavior
+4) create special moves and logic for selecting them
 
-5) create special moves and logic for selecting them
+5) The clearing thing doesn't work right now because I don't want it to clear the combat history. Like the map and the dialogue should be opened in seperate terminals
 
-6) The clearing thing doesn't work right now because I don't want it to clear the combat history. Like the map and the dialogue should be opened in seperate terminals
-
-7) need to deal with despawning enemies after they are defeated. For now, if you walk over the ghoul square again, you reenter combat, although the ghoul has no health so combat ends after you make any move. Unless you try to run away, then the ghoul can hit you.
 
