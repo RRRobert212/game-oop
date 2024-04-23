@@ -33,9 +33,11 @@ def play_test():
 
         enemy_1 = Enemy.spawn_enemy(0)
         enemy_2 = Enemy.spawn_enemy(1)
+        r = Enemy.spawn_enemy(1)
 
         m.place_entity(enemy_1, 4, 5)
         m.place_entity(enemy_2, 2, 3)
+        m.place_entity(r, 0,3)
         m.place_entity(c, 5, 5)
 
         weapon_1 = Items.spawn_weapon(2)
