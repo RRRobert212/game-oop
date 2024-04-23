@@ -9,4 +9,4 @@
 
 5) The clearing thing doesn't work right now because I don't want it to clear the combat history. Like the map and the dialogue should be opened in seperate terminals
 
-
+6) add scrolling function for maps
