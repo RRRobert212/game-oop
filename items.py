@@ -97,7 +97,3 @@ class Consumable(Items):
         return consumbale_effect_factor[self.consumable_id]
     
 
-
-w = Weapon(1)
-a = Armor(0)
-
