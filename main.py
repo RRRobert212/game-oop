@@ -15,6 +15,7 @@ def main():
 
 
 
+
     return
 
 
@@ -28,7 +29,9 @@ def play_test():
         spawned_items.clear()
 
 
-        c = create_character.create_character()
+        c = Character("R",7,2)
+        c.health_roll()
+        c.attack_roll()
 
 
         enemy_1 = Enemy.spawn_enemy(0)
