@@ -21,6 +21,7 @@ consumbale_effect_factor = [[]]
 #lists to keep track of enemies and items that are currently on the map. Used for collision detection
 spawned_enemies =[]
 spawned_items = []
+spawned_character = []
 
 
 

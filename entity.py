@@ -83,6 +83,7 @@ class Character(Entity):
         self.age = age
         self.race = race_list[race_num]
         self.race_num = race_num
+        spawned_character.append(self)
 
     def get_age(self):
         return self.age
