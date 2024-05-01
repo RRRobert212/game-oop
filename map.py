@@ -11,6 +11,12 @@ class Wall:
     def __init__(self, x, y):
         self.x = x
         self.y = y
+    
+    def get_pos_x(self):
+        return self.x
+    
+    def get_pos_y(self):
+        return self.y
 
 class Map:
 
@@ -19,6 +25,10 @@ class Map:
         self.height = height
         self.grid = [['.' for i in range(width)] for i in range(height)]
         self.walls = []
+        self.items = spawned_items
+        self.enemies = spawned_enemies
+        self.character = spawned_character
+        
 
 
 
@@ -52,7 +62,7 @@ class Map:
     
     #general display functions
     def display(self):
-        os.system('cls' if os.name == 'nt' else 'clear')
+      #  os.system('cls' if os.name == 'nt' else 'clear')
         """prints the map"""
         for row in self.grid:
             print(' '.join(row))
@@ -80,14 +90,17 @@ class Map:
         
         #this should prevent leaving map boundaries
         if entity.get_pos_x() <= 0:
-            entity.set_pos(0, entity.get_pos_y())
+            #entity.set_pos(0, entity.get_pos_y())
+            self.generate_line("W")
         if entity.get_pos_y() <= 0:
-            entity.set_pos(entity.get_pos_x(), 0)
+            #entity.set_pos(entity.get_pos_x(), 0)
+            self.generate_line("N")
         if entity.get_pos_y() >= self.height:
-            entity.set_pos(entity.get_pos_x(), self.height-1)
+            #entity.set_pos(entity.get_pos_x(), self.height-1)
+            self.generate_line("S")
         if entity.get_pos_x() >= self.width:
-            entity.set_pos(self.width-1, entity.get_pos_y())
-            print
+            #entity.set_pos(self.width-1, entity.get_pos_y())
+            self.generate_line("E")
 
         self.redraw_entity(entity)
         self.display() #do we want to make displaying the map a definite part of the move function??? maybe not but I'll keep it for now
@@ -177,5 +190,49 @@ class Map:
                 return True
         return False
     
+    def generate_line(self, NESW):
+        """
+        Generates a new row/column to append to the map on the north, east, south, or west side.
+        NESW is a string and can be one of 'N', 'E', 'S', 'W' representing North, East, South, and West respectively.
+        """
+        if NESW == 'N':  # North
+            new_row = ['.' for _ in range(self.width)]
+            self.grid.insert(0, new_row)  # Add the new row at the top
+            self.height += 1  # Since we added a row, increase the height
 
+            for entity in self.enemies:
+                entity.set_pos(entity.get_pos_x(), entity.get_pos_y() + 1)
+            for item in self.items:
+                item.set_pos(item.get_pos_x(), item.get_pos_y() + 1)
+            for wall in self.walls:
+                wall.y += 1
+            for character in self.character:
+                character.set_pos(character.get_pos_x(), character.get_pos_y() +1)
+            
+        elif NESW == 'E':  # East
+            for row in self.grid:
+                row.append('.')  # Add a new column element to the right of each row
+            self.width += 1  # Since we added a column, increase the width
+            
+        elif NESW == 'S':  # South
+            new_row = ['.' for _ in range(self.width)]
+            self.grid.append(new_row)  # Add the new row at the bottom
+            self.height += 1  # Since we added a row, increase the height
+            
+        elif NESW == 'W':  # West
+            for row in self.grid:
+                row.insert(0, '.')
+            self.width += 1
+            # Update x-coordinate of all entities, items, and walls
+            for entity in self.enemies:
+                entity.set_pos(entity.get_pos_x() + 1, entity.get_pos_y())
+            for item in self.items:
+                item.set_pos(item.get_pos_x() + 1, item.get_pos_y())
+            for wall in self.walls:
+                wall.x += 1
+            for character in self.character:
+                character.set_pos(character.get_pos_x()+1, character.get_pos_y())
+
+        else:
+            print("Invalid direction. Please choose 'N', 'E', 'S', or 'W'.")
 
