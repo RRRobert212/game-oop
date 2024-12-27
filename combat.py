@@ -84,24 +84,30 @@ def combat_flow(character, opponent):
 
 
 def attack_flow(attacker, victim):
-    print("What weapon will you use?")
-    attacker.inventory.display_weapons()
 
-    while True:
+    if len(attacker.inventory.weapons) >= 1:
+        print("What weapon will you use?")
+        attacker.inventory.display_weapons()
 
-        choice = int(input("Enter your choice: "))
-        u.load_short()
+        while True:
 
-        try:
-            if 0 < choice <= len(attacker.inventory.weapons):
-                chosen_weapon_id = attacker.inventory.weapons[choice-1]
+            choice = int(input("Enter your choice: "))
+            u.load_short()
+
+            try:
+                if 0 < choice <= len(attacker.inventory.weapons):
+                    chosen_weapon_id = attacker.inventory.weapons[choice-1]
+                    print()
+                    break    
+                    
+            except ValueError:
                 print()
-                break    
-                
-        except ValueError:
-            print()
 
-    a.attack(attacker, victim, chosen_weapon_id)
+        a.attack(attacker, victim, chosen_weapon_id)
+
+    else: 
+        u.load_short()    
+        a.attack(attacker, victim, 0)
 
 def special_flow():
     print("You don't have any special moves, idiot.")
