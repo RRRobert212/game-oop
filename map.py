@@ -3,8 +3,7 @@
 from entity import *
 from items import *
 from combat import *
-import os
-import sys
+import curses
 
 
 class Wall:
@@ -30,7 +29,15 @@ class Map:
         self.character = spawned_character
         
 
+    def render(self, stdscr):
+        """Render the grid using curses."""
+        stdscr.clear()
+        for y, row in enumerate(self.grid):
+            for x, char in enumerate(row):
+                stdscr.addch(y, x, char)
+        stdscr.refresh()
 
+        
 
     #functions for spawning entities
     def place_entity(self, entity, x, y):
@@ -61,11 +68,12 @@ class Map:
     
     
     #general display functions
-    def display(self):
-      #  os.system('cls' if os.name == 'nt' else 'clear')
-        """prints the map"""
-        for row in self.grid:
-            print(' '.join(row))
+    def display(self, stdscr):
+        """Display the map using curses."""
+        stdscr.clear()
+        for y, row in enumerate(self.grid):
+            stdscr.addstr(y, 0, ' '.join(row))  # Add each row of the grid to the screen
+        stdscr.refresh()
 
     def clear_xy(self, x, y):
         """clears a position given the coordinates"""
@@ -78,58 +86,69 @@ class Map:
 
 
 
-#functions for entity movement
-    def move(self, entity, dx, dy):
-        """basically a utility function for directional movement functions"""
-        #but I can also use it later if I want to make things move in different ways
+    def move(self, stdscr, entity, dx, dy):
+        """Utility function for directional movement."""
         self.clear_entity_or_item(entity)
 
-        #this should prevent wall clipping
-        if not self.is_wall(entity.get_pos_x()+dx, entity.get_pos_y()+dy):
-            entity.set_pos(entity.get_pos_x()+ dx, entity.get_pos_y() + dy)
-        
-        #this should prevent leaving map boundaries
-        if entity.get_pos_x() <= 0:
-            #entity.set_pos(0, entity.get_pos_y())
+        # Prevent wall clipping
+        if not self.is_wall(entity.get_pos_x() + dx, entity.get_pos_y() + dy):
+            entity.set_pos(entity.get_pos_x() + dx, entity.get_pos_y() + dy)
+
+        # Prevent leaving map boundaries
+        if entity.get_pos_x() < 0:
             self.generate_line("W")
-        if entity.get_pos_y() <= 0:
-            #entity.set_pos(entity.get_pos_x(), 0)
-            self.generate_line("N")
-        if entity.get_pos_y() >= self.height:
-            #entity.set_pos(entity.get_pos_x(), self.height-1)
-            self.generate_line("S")
-        if entity.get_pos_x() >= self.width:
-            #entity.set_pos(self.width-1, entity.get_pos_y())
+        elif entity.get_pos_x() >= self.width:
             self.generate_line("E")
+        if entity.get_pos_y() < 0:
+            self.generate_line("N")
+        elif entity.get_pos_y() >= self.height:
+            self.generate_line("S")
 
         self.redraw_entity(entity)
-        self.display() #do we want to make displaying the map a definite part of the move function??? maybe not but I'll keep it for now
+        self.display(stdscr)
 
-    def move_left(self, entity):
-        self.move(entity, -1, 0)
+    def move_left(self, stdscr, entity):
+        self.move(stdscr, entity, -1, 0)
 
-    def move_right(self, entity):
-        self.move(entity, 1, 0)
+    def move_right(self, stdscr, entity):
+        self.move(stdscr, entity, 1, 0)
 
-    def move_up(self, entity):
-        self.move(entity, 0, -1)
+    def move_up(self, stdscr, entity):
+        self.move(stdscr, entity, 0, -1)
 
-    def move_down(self, entity):
-        self.move(entity, 0, 1)
+    def move_down(self, stdscr, entity):
+        self.move(stdscr, entity, 0, 1)
 
-    def movement_loop(self, character):
-        i = input("WASD: ")
+    def is_wall(self, x, y):
+        """Check if a position is a wall."""
+        return any(wall.x == x and wall.y == y for wall in self.walls)
 
-        if i == "w":
-            self.move_up(character)
-        elif i == "a":
-            self.move_left(character)
-        elif i == "s":
-            self.move_down(character)
-        elif i == "d":
-            self.move_right(character)
-        elif i == "x": return #exit input, for testing
-        else: print("Invalid input.")
+    def spawn_wall(self, x, y):
+        """Add a wall to the grid."""
+        self.grid[y][x] = '#'
+        self.walls.append(Wall(x, y))
+
+    def movement_loop(self, stdscr, character):
+        """Loop to handle player movement."""
+        while True:
+            key = stdscr.getkey()
+
+            if key == "w":
+                self.move_up(stdscr, character)
+            elif key == "a":
+                self.move_left(stdscr, character)
+            elif key == "s":
+                self.move_down(stdscr, character)
+            elif key == "d":
+                self.move_right(stdscr, character)
+            elif key == "x":
+                return  # Exit the movement loop
+            else:
+                stdscr.addstr(self.height + 1, 0, "Invalid input.")
+                stdscr.refresh()
+            self.combat_collision(character)
+            self.consumable_collision(character)
+
 
 
 
