@@ -11,7 +11,7 @@ from items import *
 
 def main():
 
-    play_test()
+    curses.wrapper(play_test)
 
 
 
@@ -22,8 +22,9 @@ def main():
 
 
 
-def play_test():
-    while True:
+def play_test(stdscr):
+        
+        curses.curs_set(0)
         m = Map(10, 10)
         spawned_enemies.clear()
         spawned_items.clear()
@@ -60,12 +61,17 @@ def play_test():
         m.spawn_wall(8, 6)
         m.spawn_wall(8, 7)
         m.spawn_wall(8, 8)
-
-        m.display()
+        for item in spawned_items:
+            stdscr.addstr(f"Item at ({item.get_pos_x()}, {item.get_pos_y()})")
+        for enemy in spawned_enemies:
+            print(f"Enemy at ({enemy.get_pos_x()}, {enemy.get_pos_y()})")
         while True:
-            m.movement_loop(c)
             m.combat_collision(c)
             m.consumable_collision(c)
+
+            m.display(stdscr)  # Render the map
+            m.movement_loop(stdscr, c)
+
 
             if not c.is_alive():
                 print("YOU LOSE!")
